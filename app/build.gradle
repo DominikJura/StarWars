@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 buildscript {
     repositories {
@@ -96,9 +95,12 @@ dependencies {
     final BUTTERKNIFE_VERSION = "8.8.1"
     final MOCKITO_VERSION = "2.13.0"
     final ESPRESSO_VERSION = "2.2.2"
+    final KTLINT_VERSION = "0.15.0"
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
+    //Ktlint
+    ktlint "com.github.shyiko:ktlint:$KTLINT_VERSION"
     //Espresso
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION", {
