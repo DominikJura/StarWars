@@ -6,9 +6,6 @@ import co.uk.androidrecruitmenttask.data.api.ApiComponent;
 import co.uk.androidrecruitmenttask.data.api.ApiModule;
 import co.uk.androidrecruitmenttask.data.api.DaggerApiComponent;
 
-/**
- * Created by filipradon on 10/04/17.
- */
 
 public class StarWarsApplication extends Application {
 
