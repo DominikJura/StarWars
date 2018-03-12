@@ -8,4 +8,6 @@ import co.uk.androidrecruitmenttask.feature.splash.SplashActivityContract.View
 class SplashActivity : BaseActivity<Presenter>(), View {
 
     override val layoutId: Int = R.layout.activity_splash
+
+
 }
