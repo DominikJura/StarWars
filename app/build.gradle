@@ -94,16 +94,20 @@ dependencies {
     final CONSTRAINT_VERSION = "1.0.2"
     final JUNIT_VERSION = "4.12"
     final BUTTERKNIFE_VERSION = "8.8.1"
+    final MOCKITO_VERSION = "2.13.0"
+    final ESPRESSO_VERSION = "2.2.2"
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
     //Espresso
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //Junit
     testImplementation "junit:junit:$JUNIT_VERSION"
+    //Mockito
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"

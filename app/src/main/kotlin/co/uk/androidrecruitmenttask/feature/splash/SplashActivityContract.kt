@@ -6,7 +6,9 @@ interface SplashActivityContract {
 
     interface View
 
-    interface Router
+    interface Router {
+        fun navigateToMain()
+    }
 
     interface Presenter : BaseContract.Presenter
 }
