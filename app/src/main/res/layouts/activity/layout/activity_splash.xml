@@ -2,12 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_background"
     tools:context="co.uk.androidrecruitmenttask.ui.MainActivity">
 
     <ImageView
+        android:id="@+id/splash_star_wars_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/star_wars_logo"
