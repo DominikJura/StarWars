@@ -51,10 +51,12 @@ android {
             dimension "mode"
             applicationIdSuffix ".develop"
             versionNameSuffix "-develop"
+            buildConfigField 'String', 'BASE_URL', START_WARS_ENDPOINT
             resValue 'string', 'app_name', 'Android Recruitment Task-develop'
         }
         production {
             dimension "mode"
+            buildConfigField 'String', 'BASE_URL', START_WARS_ENDPOINT
             resValue 'string', 'app_name', 'Android Recruitment Task'
         }
     }

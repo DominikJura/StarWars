@@ -14,14 +14,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static co.uk.androidrecruitmenttask.util.configuration.StringConstanst.ENDPOINT;
+
 /**
  * Created by filipradon on 15/07/16.
  */
 
 @Module
 public class ApiModule {
-
-    private static final String ENDPOINT = "http://swapi.co/api/";
 
     @Provides
     @Singleton
@@ -76,5 +76,4 @@ public class ApiModule {
     StarWarsService provideStarWarsService(Retrofit retrofit) {
         return retrofit.create(StarWarsService.class);
     }
-
 }
