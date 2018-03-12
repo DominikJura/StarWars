@@ -1,4 +1,27 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21"
+    }
+}
+
+repositories {
+    maven { url 'https://maven.google.com/' }
+}
+
+configurations {
+    ktlint
+}
+
+kapt {
+    generateStubs = true
+}
 
 android {
     compileSdkVersion 25
@@ -16,10 +39,39 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+        }
     }
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+
+    flavorDimensions "mode"
+
+    productFlavors {
+        develop {
+            dimension "mode"
+            applicationIdSuffix ".develop"
+            versionNameSuffix "-develop"
+            resValue 'string', 'app_name', 'Android Recruitment Task-develop'
+        }
+        production {
+            dimension "mode"
+            resValue 'string', 'app_name', 'Android Recruitment Task'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        main.res.srcDirs += [
+                'src/main/res/layouts',
+                'src/main/res/layouts/activity',
+                'src/main/res/layouts/fragment',
+        ]
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     packagingOptions {
@@ -30,40 +82,56 @@ android {
 }
 
 dependencies {
-
+    final KOTLIN_VERSION = '1.2.21'
     final SUPPORT_VERSION = '25.3.0'
     final RETROFIT_VERSION = '2.2.0'
     final RXJAVA_VERSION = '2.0.8'
     final RXANDROID_VERSION = '2.0.1'
     final OKHTTP_VERSION = '3.4.2'
-    final DAGGER_VERSION = '2.9'
+    final DAGGER2_VERSION = '2.15'
     final CONSTRAINT_VERSION = "1.0.2"
     final JUNIT_VERSION = "4.12"
 
-    def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
+    //Espresso
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //Junit
+    testImplementation "junit:junit:$JUNIT_VERSION"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+    //RxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$RXJAVA_VERSION"
+    implementation "io.reactivex.rxjava2:rxandroid:$RXANDROID_VERSION"
+    //Dagger
+    implementation "com.google.dagger:dagger:$DAGGER2_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
+    implementation "com.google.dagger:dagger-android:$DAGGER2_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER2_VERSION"
+    kapt "com.google.dagger:dagger-android-processor:$DAGGER2_VERSION"
+    //Support
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:design:$SUPPORT_VERSION"
+    implementation "com.android.support.constraint:constraint-layout:$CONSTRAINT_VERSION"
+}
 
-    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
-    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
-    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
 
-    compile "io.reactivex.rxjava2:rxjava:$RXJAVA_VERSION"
-    compile "io.reactivex.rxjava2:rxandroid:$RXANDROID_VERSION"
+check.dependsOn ktlint
 
-    compile "com.google.dagger:dagger:$DAGGER_VERSION"
-    annotationProcessor daggerCompiler
-    testAnnotationProcessor daggerCompiler
-    androidTestAnnotationProcessor daggerCompiler
-
-    compile "com.android.support:appcompat-v7:$SUPPORT_VERSION"
-    compile "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
-    compile "com.android.support:design:$SUPPORT_VERSION"
-    compile "com.android.support.constraint:constraint-layout:$CONSTRAINT_VERSION"
-    testCompile "junit:junit:$JUNIT_VERSION"
-
+task ktlintFormat(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
 }
