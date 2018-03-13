@@ -13,7 +13,6 @@ import kotlin.reflect.KClass
 abstract class BaseActivity<P : BaseContract.Presenter>
     : AppCompatActivity() {
 
-//    @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject lateinit var presenter: P
 
     abstract val layoutId: Int
@@ -38,7 +37,4 @@ abstract class BaseActivity<P : BaseContract.Presenter>
         flags?.forEach { intent.addFlags(it) }
         startActivity(intent)
     }
-
-//    override fun supportFragmentInjector(): AndroidInjector<Fragment> =
-//            fragmentInjector
 }

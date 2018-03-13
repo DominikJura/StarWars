@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_background"
-    tools:context="co.uk.androidrecruitmenttask.ui.MainActivity">
+    tools:context="co.uk.androidrecruitmenttask.feature.main.ui.MainActivity">
 
     <ImageView
         android:id="@+id/splash_star_wars_image"

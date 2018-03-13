@@ -3,7 +3,7 @@ package co.uk.androidrecruitmenttask.feature.splash.navigation
 import android.content.Intent
 import co.uk.androidrecruitmenttask.feature.splash.SplashActivityContract.Router
 import co.uk.androidrecruitmenttask.feature.splash.ui.SplashActivity
-import co.uk.androidrecruitmenttask.ui.MainActivity
+import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 
 class SplashActivityRouter(private val activity: SplashActivity) : Router {
 

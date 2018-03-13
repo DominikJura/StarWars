@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.data.api;
+package co.uk.androidrecruitmenttask.util.injection.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import javax.inject.Singleton;
 
 import co.uk.androidrecruitmenttask.BuildConfig;
+import co.uk.androidrecruitmenttask.data.api.StarWarsService;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;

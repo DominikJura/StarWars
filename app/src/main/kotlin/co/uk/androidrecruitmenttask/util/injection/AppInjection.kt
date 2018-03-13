@@ -3,14 +3,14 @@ package co.uk.androidrecruitmenttask.util.injection
 import android.app.Application
 import android.content.Context
 import co.uk.androidrecruitmenttask.StarWarsApplication
+import co.uk.androidrecruitmenttask.util.injection.binding.ActivityBinderModule
+import co.uk.androidrecruitmenttask.util.injection.modules.ApiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.android.AndroidInjectionModule
 import io.reactivex.disposables.CompositeDisposable
-import co.uk.androidrecruitmenttask.util.injection.binding.ActivityBinderModule
-import co.uk.androidrecruitmenttask.util.injection.binding.FragmentBinderModule
 import javax.inject.Scope
 import javax.inject.Singleton
 
@@ -34,7 +34,7 @@ class AppModule {
 @Component(modules = [
     AndroidInjectionModule::class,
     ActivityBinderModule::class,
-    FragmentBinderModule::class,
+    ApiModule::class,
     AppModule::class])
 interface AppComponent {
 

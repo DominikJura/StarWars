@@ -4,7 +4,7 @@ import android.content.Intent
 import co.uk.androidrecruitmenttask.BaseTest
 import co.uk.androidrecruitmenttask.feature.splash.SplashActivityContract
 import co.uk.androidrecruitmenttask.feature.splash.ui.SplashActivity
-import co.uk.androidrecruitmenttask.ui.MainActivity
+import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.times
