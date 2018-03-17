@@ -3,12 +3,11 @@ package co.uk.androidrecruitmenttask.data
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-/**
- * Created by filipradon on 10/04/17.
- */
+
 @Parcelize
 class People(
-        val name: String
+        val name: String,
+        val starships: ArrayList<String>
 ) : Parcelable {
 
     /**
@@ -29,6 +28,4 @@ class People(
      * edited : 2014-12-20T21:17:56.891000Z
      * url : http://swapi.co/api/people/1/
      */
-
-
 }

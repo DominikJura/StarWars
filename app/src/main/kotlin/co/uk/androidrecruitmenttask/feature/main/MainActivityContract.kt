@@ -12,12 +12,15 @@ interface MainActivityContract {
 
         fun addPeopleToList(peopleList: List<People>)
         fun showSnackBar(errorMessage: String)
+        fun showToast(message: String)
     }
 
-    interface Router
+    interface Router {
+        fun navigateToStarshipScreen(starshipsUrlList: ArrayList<String>)
+    }
 
     interface Presenter : BaseContract.Presenter {
-        fun onItemClicked(position: Int)
+        fun onItemClicked(person: People)
         fun onLoadMore()
     }
 }

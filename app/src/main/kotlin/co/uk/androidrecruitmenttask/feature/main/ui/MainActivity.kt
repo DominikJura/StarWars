@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.Toast
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.People
@@ -35,11 +36,11 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
     @Inject
     lateinit var recyclerLayoutManager: RecyclerView.LayoutManager
 
-    override var isPageLoading: Boolean = false
-    set(value) {
-        field = value
-        peopleAdapter.isLoading = value
-    }
+    override var isPageLoading: Boolean
+        set(loading) {
+            peopleRecyclerView.post { peopleAdapter.isLoading = loading }
+        }
+        get() = peopleAdapter.isLoading
 
     override var isAllPagesLoaded: Boolean = false
     override var nextPageIndex: Int = FIRST_PAGE_NUMBER
@@ -81,5 +82,9 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
 
     override fun showSnackBar(errorMessage: String) {
         Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

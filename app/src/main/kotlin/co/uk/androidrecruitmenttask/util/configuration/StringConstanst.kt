@@ -9,4 +9,6 @@ object StringConstanst {
     const val MAIN_KEY_NEXT_PAGE_INDEX = "next_page_index"
     const val MAIN_KEY_ALL_PAGES_LOADED = "all_pages_loaded"
     const val MAIN_KEY_PEOPLE_LIST = "people_list"
+
+    const val KEY_STARSHIPS_LIST = "starships_list"
 }

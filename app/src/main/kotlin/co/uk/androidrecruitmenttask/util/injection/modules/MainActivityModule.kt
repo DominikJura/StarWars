@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import co.uk.androidrecruitmenttask.data.People
 import co.uk.androidrecruitmenttask.data.api.StarWarsService
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
+import co.uk.androidrecruitmenttask.feature.main.navigation.MainActivityRouter
 import co.uk.androidrecruitmenttask.feature.main.presentation.MainActivityPresenter
 import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
@@ -24,6 +25,10 @@ class MainActivityModule {
     @Provides
     fun view(activity: MainActivity): MainActivityContract.View =
             activity
+
+    @Provides
+    fun router(activity: MainActivity): MainActivityContract.Router =
+            MainActivityRouter(activity)
 
     @Provides
     fun peopleList(): ArrayList<People> =
@@ -49,10 +54,20 @@ class MainActivityModule {
     @Provides
     fun presenter(
             view: MainActivityContract.View,
+            router: MainActivityContract.Router,
             service: StarWarsService,
             onLoadMoreSubject: Subject<Int>,
+            resourceProvider: ResourceProvider,
             httpErrorProvider: HttpErrorProvider,
             compositeDisposable: CompositeDisposable
     ): MainActivityContract.Presenter =
-            MainActivityPresenter(view, service, onLoadMoreSubject, httpErrorProvider, compositeDisposable)
+            MainActivityPresenter(
+                    view,
+                    router,
+                    service,
+                    onLoadMoreSubject,
+                    resourceProvider,
+                    httpErrorProvider,
+                    compositeDisposable
+            )
 }

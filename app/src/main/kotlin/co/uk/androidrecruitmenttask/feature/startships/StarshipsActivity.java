@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.ui;
+package co.uk.androidrecruitmenttask.feature.startships;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
