@@ -11,12 +11,13 @@ interface MainActivityContract {
         var nextPageIndex: Int
 
         fun addPeopleToList(peopleList: List<People>)
-        fun showSnackBar(errorMessage: String?)
+        fun showSnackBar(errorMessage: String)
     }
 
     interface Router
 
     interface Presenter : BaseContract.Presenter {
-        fun fetchPeopleFromRemote()
+        fun onItemClicked(position: Int)
+        fun onLoadMore()
     }
 }

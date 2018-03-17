@@ -3,6 +3,8 @@ package co.uk.androidrecruitmenttask.util.injection
 import android.app.Application
 import android.content.Context
 import co.uk.androidrecruitmenttask.StarWarsApplication
+import co.uk.androidrecruitmenttask.util.configuration.ResourceProvider
+import co.uk.androidrecruitmenttask.util.configuration.ResourceProviderImpl
 import co.uk.androidrecruitmenttask.util.injection.binding.ActivityBinderModule
 import co.uk.androidrecruitmenttask.util.injection.modules.ApiModule
 import dagger.BindsInstance
@@ -24,6 +26,10 @@ class AppModule {
     @Provides
     fun context(application: Application): Context =
             application
+
+    @Provides
+    fun resourceProvider(context: Context): ResourceProvider =
+            ResourceProviderImpl(context)
 
     @Provides
     fun compositeDisposable(): CompositeDisposable =

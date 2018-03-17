@@ -10,8 +10,15 @@ import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleAdapterType.P
 import co.uk.androidrecruitmenttask.feature.main.ui.view.LoadingViewHolder
 import co.uk.androidrecruitmenttask.feature.main.ui.view.PeopleViewHolder
 
+typealias OnItemClickListener = (position: Int) -> Unit
+
 class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    companion object {
+        private const val NUMBER_OF_LOADINGS_VIEWS = 1
+    }
+
+    var onItemClickListener : OnItemClickListener? = null
     var isLoading: Boolean = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
@@ -33,7 +40,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
 
     override fun getItemCount(): Int =
             when {
-                isLoading && !peopleList.isEmpty() -> peopleList.size + 1
+                isLoading && !peopleList.isEmpty() -> peopleList.size + NUMBER_OF_LOADINGS_VIEWS
                 else -> peopleList.size
             }
 
@@ -48,7 +55,10 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is PeopleViewHolder -> holder.setItem(peopleList[position].name)
+            is PeopleViewHolder -> {
+                holder.itemView.setOnClickListener { onItemClickListener?.invoke(position) }
+                holder.setItem(peopleList[position].name)
+            }
         }
     }
 

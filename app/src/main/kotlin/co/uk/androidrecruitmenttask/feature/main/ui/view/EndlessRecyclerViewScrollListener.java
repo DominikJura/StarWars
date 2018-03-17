@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.ui.util;
+package co.uk.androidrecruitmenttask.feature.main.ui.view;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

@@ -11,7 +11,7 @@ import co.uk.androidrecruitmenttask.feature.common.ui.BaseActivity
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
-import co.uk.androidrecruitmenttask.ui.util.StarWarsScrollListener
+import co.uk.androidrecruitmenttask.feature.main.ui.view.StarWarsScrollListener
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_ALL_PAGES_LOADED
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_NEXT_PAGE_INDEX
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_PEOPLE_LIST
@@ -56,10 +56,10 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
         adapter = peopleAdapter
         addOnScrollListener(object : StarWarsScrollListener() {
             override var isLoading: Boolean = isPageLoading
-            override var isLastPage: Boolean = isAllPagesLoaded
-            override fun onLoadMore() { presenter.fetchPeopleFromRemote() }
+            override fun onLoadMore() { presenter.onLoadMore() }
         })
-        //TODO handel click
+
+        peopleAdapter.onItemClickListener = { presenter.onItemClicked(it) }
     }
 
     override fun onSaveInstanceState(outState: Bundle) = with(outState) {
@@ -80,10 +80,7 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
         peopleAdapter.addPeople(peopleList)
     }
 
-    override fun showSnackBar(errorMessage: String?) {
-        Snackbar.make(
-                rootView,
-                errorMessage ?: getString(R.string.default_error_message),
-                Snackbar.LENGTH_LONG)
+    override fun showSnackBar(errorMessage: String) {
+        Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_LONG).show()
     }
 }
