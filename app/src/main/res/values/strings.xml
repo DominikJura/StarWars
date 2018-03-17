@@ -1,5 +1,5 @@
 <resources>
     <string name="title_activity_starships">StarshipsActivity</string>
     <string name="default_error_message">Something went wrong</string>
-    <string name="no_starships">There are no starships</string>
+    <string name="no_starships">There are no starships for %1$s</string>
 </resources>

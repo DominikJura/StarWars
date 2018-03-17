@@ -1,11 +1,11 @@
 package co.uk.androidrecruitmenttask.feature.main.presentation
 
 import co.uk.androidrecruitmenttask.R
-import co.uk.androidrecruitmenttask.data.People
-import co.uk.androidrecruitmenttask.data.api.StarWarsService
+import co.uk.androidrecruitmenttask.data.api.People
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Router
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.View
+import co.uk.androidrecruitmenttask.util.api.StarWarsService
 import co.uk.androidrecruitmenttask.util.configuration.ResourceProvider
 import co.uk.androidrecruitmenttask.util.tools.HttpErrorProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -64,10 +64,11 @@ class MainActivityPresenter(
         onLoadMoreSubject.onNext(view.nextPageIndex)
     }
 
-    override fun onItemClicked(person: People) = with(person.starships) {
+    override fun onItemClicked(person: People) = with(person) {
         when {
-            isEmpty() -> view.showToast(resourceProvider.getString(R.string.no_starships))
-            else -> router.navigateToStarshipScreen(this)
+            starships.isEmpty() -> view.showToast(String.format(
+                    resourceProvider.getString(R.string.no_starships), name))
+            else -> router.navigateToStarshipScreen(starships)
         }
     }
 

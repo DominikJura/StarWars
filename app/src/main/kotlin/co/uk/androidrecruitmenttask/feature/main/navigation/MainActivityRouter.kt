@@ -3,7 +3,7 @@ package co.uk.androidrecruitmenttask.feature.main.navigation
 import android.content.Intent
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Router
 import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
-import co.uk.androidrecruitmenttask.feature.startships.StarshipsActivity
+import co.uk.androidrecruitmenttask.feature.startships.ui.StarshipsActivity
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.KEY_STARSHIPS_LIST
 
 class MainActivityRouter(private val activity: MainActivity) : Router {

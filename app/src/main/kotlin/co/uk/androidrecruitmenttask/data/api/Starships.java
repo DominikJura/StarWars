@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.data;
+package co.uk.androidrecruitmenttask.data.api;
 
 import java.util.List;
 

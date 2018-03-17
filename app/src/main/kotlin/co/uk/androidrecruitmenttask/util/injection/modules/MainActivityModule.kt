@@ -2,8 +2,8 @@ package co.uk.androidrecruitmenttask.util.injection.modules
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import co.uk.androidrecruitmenttask.data.People
-import co.uk.androidrecruitmenttask.data.api.StarWarsService
+import co.uk.androidrecruitmenttask.data.api.People
+import co.uk.androidrecruitmenttask.util.api.StarWarsService
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
 import co.uk.androidrecruitmenttask.feature.main.navigation.MainActivityRouter
 import co.uk.androidrecruitmenttask.feature.main.presentation.MainActivityPresenter

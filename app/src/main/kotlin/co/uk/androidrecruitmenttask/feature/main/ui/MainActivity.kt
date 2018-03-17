@@ -7,12 +7,12 @@ import android.view.View
 import android.widget.Toast
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
-import co.uk.androidrecruitmenttask.data.People
+import co.uk.androidrecruitmenttask.data.api.People
 import co.uk.androidrecruitmenttask.feature.common.ui.BaseActivity
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
-import co.uk.androidrecruitmenttask.feature.main.ui.view.StarWarsScrollListener
+import co.uk.androidrecruitmenttask.feature.main.ui.util.StarWarsScrollListener
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_ALL_PAGES_LOADED
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_NEXT_PAGE_INDEX
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_PEOPLE_LIST

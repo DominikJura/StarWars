@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.feature.main.ui.view
+package co.uk.androidrecruitmenttask.feature.main.ui.util
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView

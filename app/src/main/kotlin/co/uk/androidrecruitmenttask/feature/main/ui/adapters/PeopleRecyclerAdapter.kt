@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.uk.androidrecruitmenttask.R
-import co.uk.androidrecruitmenttask.data.People
+import co.uk.androidrecruitmenttask.data.api.People
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleAdapterType.LOADING
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleAdapterType.PEOPLE_ITEM
-import co.uk.androidrecruitmenttask.feature.main.ui.view.LoadingViewHolder
-import co.uk.androidrecruitmenttask.feature.main.ui.view.PeopleViewHolder
+import co.uk.androidrecruitmenttask.feature.main.ui.adapters.viewholder.LoadingViewHolder
+import co.uk.androidrecruitmenttask.feature.main.ui.adapters.viewholder.PeopleViewHolder
 
 typealias OnItemClickListener = (position: People) -> Unit
 

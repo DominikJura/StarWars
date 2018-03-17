@@ -26,7 +26,7 @@
 
         <activity android:name=".feature.main.ui.MainActivity"/>
 
-        <activity android:name=".feature.startships.StarshipsActivity" />
+        <activity android:name=".feature.startships.ui.StarshipsActivity" />
 
     </application>
 

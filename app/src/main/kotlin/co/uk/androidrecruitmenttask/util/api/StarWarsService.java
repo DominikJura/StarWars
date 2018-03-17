@@ -1,8 +1,9 @@
-package co.uk.androidrecruitmenttask.data.api;
+package co.uk.androidrecruitmenttask.util.api;
 
 
-import co.uk.androidrecruitmenttask.data.People;
-import co.uk.androidrecruitmenttask.data.Starships;
+import co.uk.androidrecruitmenttask.data.api.ListResponse;
+import co.uk.androidrecruitmenttask.data.api.People;
+import co.uk.androidrecruitmenttask.data.api.Starships;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

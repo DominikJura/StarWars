@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.data
+package co.uk.androidrecruitmenttask.data.api
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
