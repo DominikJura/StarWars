@@ -7,6 +7,6 @@ import io.reactivex.Single
 
 interface Repository {
 
-    fun getPeople(): Single<ListResponse<People>>
+    fun getPeople(page: Int): Single<ListResponse<People>>
     fun getStarships(starshipsUrlList: List<String>): Single<List<Starships>>
 }

@@ -8,7 +8,12 @@ import retrofit2.HttpException
 
 class HttpErrorProviderImpl(private val resourceProvider: ResourceProvider) : HttpErrorProvider {
 
-    override fun getStartWarsPeopleMessage(error: HttpException): String {
+    override fun getStartWarsPeopleMessage(error: Throwable): String = when (error) {
+            is HttpException -> parseHttpErrorMessage(error)
+            else -> resourceProvider.getString(R.string.default_error_message)
+        }
+
+    private fun parseHttpErrorMessage(error: HttpException): String {
         val errorResponse = Gson()
                 .fromJson(error.response().errorBody().string(), ErrorResponse::class.java)
         return errorResponse.detail ?: resourceProvider.getString(R.string.default_error_message)

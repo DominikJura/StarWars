@@ -1,25 +1,20 @@
 package co.uk.androidrecruitmenttask.feature.main.presentation
 
-import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.api.People
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Router
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.View
-import co.uk.androidrecruitmenttask.util.api.StarWarsService
-import co.uk.androidrecruitmenttask.util.configuration.ResourceProvider
+import co.uk.androidrecruitmenttask.util.repository.Repository
 import co.uk.androidrecruitmenttask.util.tools.HttpErrorProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.Subject
-import retrofit2.HttpException
 
 class MainActivityPresenter(
         private val view: View,
         private val router: Router,
-        private val service: StarWarsService,
+        private val repository: Repository,
         private val onLoadMoreSubject: Subject<Int>,
-        private val resourceProvider: ResourceProvider,
         private val httpErrorProvider: HttpErrorProvider,
         private val compositeDisposable: CompositeDisposable
 ) : Presenter {
@@ -29,10 +24,7 @@ class MainActivityPresenter(
                 .distinct()
                 .filter { !isAllPagesLoaded }
                 .doOnNext { isPageLoading = true }
-                .flatMapSingle {
-                    service.getPeople(it)
-                            .subscribeOn(Schedulers.io())
-                }
+                .flatMapSingle { repository.getPeople(it) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
                     if (it.next == null) {
@@ -44,20 +36,14 @@ class MainActivityPresenter(
                     nextPageIndex++
                 }
                 .doOnError { isPageLoading = false }
-                .subscribe({ addPeopleToList(it.results) }, { handelErrorMessage(it) })
+                .singleOrError()
+                .subscribe(
+                        { addPeopleToList(it.results) },
+                        { view.showSnackBar(httpErrorProvider.getStartWarsPeopleMessage(it)) }
+                )
         )
 
         onLoadMoreSubject.onNext(nextPageIndex)
-    }
-
-    private fun handelErrorMessage(error: Throwable) {
-        val errorMessage = when (error) {
-            is HttpException -> {
-                httpErrorProvider.getStartWarsPeopleMessage(error)
-            }
-            else -> resourceProvider.getString(R.string.default_error_message)
-        }
-        view.showSnackBar(errorMessage)
     }
 
     override fun onLoadMore() {
@@ -65,11 +51,7 @@ class MainActivityPresenter(
     }
 
     override fun onItemClicked(person: People) = with(person) {
-        when {
-            starships.isEmpty() -> view.showToast(String.format(
-                    resourceProvider.getString(R.string.no_starships), name))
-            else -> router.navigateToStarshipScreen(starships)
-        }
+        router.navigateToStarshipScreen(starships)
     }
 
     override fun clear() {

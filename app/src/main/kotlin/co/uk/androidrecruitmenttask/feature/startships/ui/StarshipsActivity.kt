@@ -8,6 +8,7 @@ import co.uk.androidrecruitmenttask.feature.common.ui.BaseActivity
 import co.uk.androidrecruitmenttask.feature.startships.StarshipActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.startships.StarshipActivityContract.View
 import co.uk.androidrecruitmenttask.feature.startships.ui.adapters.StarshipsAdapter
+import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.KEY_STARSHIPS_LIST
 import javax.inject.Inject
 
 class StarshipsActivity : BaseActivity<Presenter>(), View {
@@ -25,6 +26,11 @@ class StarshipsActivity : BaseActivity<Presenter>(), View {
 
     override fun init(savedInstanceState: Bundle?) {
         initRecycler()
+        getExtras()
+    }
+
+    private fun getExtras() {
+        intent.getStringArrayListExtra(KEY_STARSHIPS_LIST)?.let { presenter.onStarshipsUrlExtras(it) }
     }
 
     private fun initRecycler() = with(starshipsRecyclerView) {

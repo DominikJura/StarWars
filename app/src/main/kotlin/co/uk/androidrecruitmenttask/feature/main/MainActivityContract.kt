@@ -12,7 +12,6 @@ interface MainActivityContract {
 
         fun addPeopleToList(peopleList: List<People>)
         fun showSnackBar(errorMessage: String)
-        fun showToast(message: String)
     }
 
     interface Router {

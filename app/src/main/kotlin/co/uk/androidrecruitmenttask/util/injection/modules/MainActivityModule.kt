@@ -3,7 +3,6 @@ package co.uk.androidrecruitmenttask.util.injection.modules
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import co.uk.androidrecruitmenttask.data.api.People
-import co.uk.androidrecruitmenttask.util.api.StarWarsService
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
 import co.uk.androidrecruitmenttask.feature.main.navigation.MainActivityRouter
 import co.uk.androidrecruitmenttask.feature.main.presentation.MainActivityPresenter
@@ -11,6 +10,7 @@ import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
 import co.uk.androidrecruitmenttask.util.configuration.ResourceProvider
 import co.uk.androidrecruitmenttask.util.injection.RuntimeScope
+import co.uk.androidrecruitmenttask.util.repository.Repository
 import co.uk.androidrecruitmenttask.util.tools.HttpErrorProvider
 import co.uk.androidrecruitmenttask.util.tools.HttpErrorProviderImpl
 import dagger.Module
@@ -55,18 +55,16 @@ class MainActivityModule {
     fun presenter(
             view: MainActivityContract.View,
             router: MainActivityContract.Router,
-            service: StarWarsService,
+            repository: Repository,
             onLoadMoreSubject: Subject<Int>,
-            resourceProvider: ResourceProvider,
             httpErrorProvider: HttpErrorProvider,
             compositeDisposable: CompositeDisposable
     ): MainActivityContract.Presenter =
             MainActivityPresenter(
                     view,
                     router,
-                    service,
+                    repository,
                     onLoadMoreSubject,
-                    resourceProvider,
                     httpErrorProvider,
                     compositeDisposable
             )

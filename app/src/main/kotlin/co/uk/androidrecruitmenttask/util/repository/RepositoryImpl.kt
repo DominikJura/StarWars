@@ -5,21 +5,21 @@ import co.uk.androidrecruitmenttask.data.api.People
 import co.uk.androidrecruitmenttask.data.api.Starships
 import co.uk.androidrecruitmenttask.util.api.StarWarsService
 import co.uk.androidrecruitmenttask.util.tools.StarWarsParser
-
 import io.reactivex.Single
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 
 class RepositoryImpl(
         private val starWarsService: StarWarsService,
         private val starWarsParser: StarWarsParser
 ): Repository {
 
-    override fun getPeople(): Single<ListResponse<People>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getPeople(page: Int): Single<ListResponse<People>> =
+        starWarsService.getPeople(page)
+                .subscribeOn(Schedulers.io())
 
     override fun getStarships(starshipsUrlList: List<String>): Single<List<Starships>> =
-            BehaviorSubject.just(starshipsUrlList)
+            PublishSubject.just(starshipsUrlList)
                 .flatMapIterable { it }
                 .map { starWarsParser.getStarshipId(it) }
                 .toList()
