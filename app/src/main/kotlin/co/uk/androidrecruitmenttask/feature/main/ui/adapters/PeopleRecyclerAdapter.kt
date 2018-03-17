@@ -16,7 +16,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
 
     companion object {
         private const val NUMBER_OF_LOADINGS_VIEWS = 1
-        private const val NEXT_INDEX = 1
+        private const val LAST_INDEX = 1
     }
 
     var onItemClickListener: OnItemClickListener? = null
@@ -60,11 +60,11 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
     private fun isLoadingViewType(position: Int) =
             isLoading && !peopleList.isEmpty() && peopleList.size == position
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = with(holder) {
+        when (this) {
             is PeopleViewHolder -> {
-                holder.itemView.setOnClickListener { onItemClickListener?.invoke(peopleList[position]) }
-                holder.setItem(peopleList[position].name)
+                itemView.setOnClickListener { onItemClickListener?.invoke(peopleList[position]) }
+                setItem(peopleList[position].name)
             }
         }
     }
@@ -76,8 +76,8 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
     }
 
     fun addPeople(people: List<People>) = with(peopleList) {
-        val beforeItemIndex = size
+        val beforeItemIndex = itemCount
         addAll(people)
-        notifyItemRangeInserted(beforeItemIndex + NEXT_INDEX, size)
+        notifyItemRangeInserted(beforeItemIndex, size - LAST_INDEX)
     }
 }

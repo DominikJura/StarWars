@@ -8,11 +8,9 @@ import co.uk.androidrecruitmenttask.feature.main.navigation.MainActivityRouter
 import co.uk.androidrecruitmenttask.feature.main.presentation.MainActivityPresenter
 import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
-import co.uk.androidrecruitmenttask.util.configuration.ResourceProvider
 import co.uk.androidrecruitmenttask.util.injection.RuntimeScope
 import co.uk.androidrecruitmenttask.util.repository.Repository
 import co.uk.androidrecruitmenttask.util.tools.HttpErrorProvider
-import co.uk.androidrecruitmenttask.util.tools.HttpErrorProviderImpl
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -41,10 +39,6 @@ class MainActivityModule {
     @Provides
     fun recyclerLayoutManager(activity: MainActivity): RecyclerView.LayoutManager =
             LinearLayoutManager(activity)
-
-    @Provides
-    fun httpErrorProvider(resourceProvider: ResourceProvider): HttpErrorProvider =
-         HttpErrorProviderImpl(resourceProvider)
 
     @Provides
     fun onLoadMoreSubject(): Subject<Int> =

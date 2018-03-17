@@ -1,4 +1,4 @@
-package co.uk.androidrecruitmenttask.feature.main.ui.adapters.viewholder
+package co.uk.androidrecruitmenttask.feature.startships.ui.adapters.viewholder
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,16 +7,16 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import co.uk.androidrecruitmenttask.R
 
-class PeopleViewHolder(peopleView: View) : RecyclerView.ViewHolder(peopleView) {
+class StarshipViewHolder(starshipView: View) : RecyclerView.ViewHolder(starshipView) {
 
-    @BindView(R.id.item_people_name)
-    lateinit var personNameTextView: TextView
+    @BindView(R.id.item_starship_name)
+    lateinit var starshipNameTextView: TextView
 
     init {
         ButterKnife.bind(this, itemView)
     }
 
     fun setItem(name: String) {
-        personNameTextView.text = name
+        starshipNameTextView.text = name
     }
 }

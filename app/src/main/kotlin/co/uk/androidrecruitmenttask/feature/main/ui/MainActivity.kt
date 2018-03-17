@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.api.People
@@ -82,9 +81,5 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
 
     override fun showSnackBar(errorMessage: String) {
         Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_LONG).show()
-    }
-
-    override fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

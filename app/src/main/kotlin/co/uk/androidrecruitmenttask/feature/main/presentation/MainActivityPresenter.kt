@@ -36,10 +36,9 @@ class MainActivityPresenter(
                     nextPageIndex++
                 }
                 .doOnError { isPageLoading = false }
-                .singleOrError()
                 .subscribe(
                         { addPeopleToList(it.results) },
-                        { view.showSnackBar(httpErrorProvider.getStartWarsPeopleMessage(it)) }
+                        { showSnackBar(httpErrorProvider.getStartWarsPeopleMessage(it)) }
                 )
         )
 
