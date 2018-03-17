@@ -14,6 +14,7 @@ import co.uk.androidrecruitmenttask.feature.common.ui.BaseActivity
 import co.uk.androidrecruitmenttask.feature.startships.StarshipActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.startships.StarshipActivityContract.View
 import co.uk.androidrecruitmenttask.feature.startships.ui.adapters.StarshipsAdapter
+import co.uk.androidrecruitmenttask.util.configuration.StringConstanst
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.KEY_STARSHIPS_LIST
 import javax.inject.Inject
 
@@ -41,16 +42,25 @@ class StarshipsActivity : BaseActivity<Presenter>(), View {
 
     override fun init(savedInstanceState: Bundle?) {
         initRecycler()
-        getExtras()
+        savedInstanceState?.let { restoreState(savedInstanceState) } ?: getExtras()
+    }
+
+    private fun initRecycler() = with(starshipsRecyclerView) {
+        layoutManager = recyclerLayoutManager
+        adapter = starshipsAdapter
+    }
+
+    private fun restoreState(savedInstanceState: Bundle) = with(savedInstanceState) {
+        starshipsAdapter.updateList(getParcelableArrayList(StringConstanst.STARSHIPS_KEY_STARSHIPS_LIST))
     }
 
     private fun getExtras() {
         intent.getStringArrayListExtra(KEY_STARSHIPS_LIST)?.let { presenter.onStarshipsUrlExtras(it) }
     }
 
-    private fun initRecycler() = with(starshipsRecyclerView) {
-        layoutManager = recyclerLayoutManager
-        adapter = starshipsAdapter
+    override fun onSaveInstanceState(outState: Bundle) = with(outState) {
+        putParcelableArrayList(StringConstanst.STARSHIPS_KEY_STARSHIPS_LIST, starshipsAdapter.starshipsList)
+        super.onSaveInstanceState(outState)
     }
 
     override fun addStarshipToList(starship: Starships) {

@@ -9,7 +9,7 @@ import co.uk.androidrecruitmenttask.feature.startships.ui.adapters.viewholder.St
 import java.util.ArrayList
 
 class StarshipsAdapter(
-        private val starshipsList: ArrayList<Starships>
+        val starshipsList: ArrayList<Starships>
 ) : RecyclerView.Adapter<StarshipViewHolder>() {
 
     companion object {
@@ -27,6 +27,12 @@ class StarshipsAdapter(
 
     override fun getItemCount(): Int =
             starshipsList.size
+
+    fun updateList(starships: ArrayList<Starships>) = with(starshipsList) {
+        clear()
+        addAll(starships)
+        notifyDataSetChanged()
+    }
 
     fun addStarship(starship: Starships) = with(starshipsList) {
         add(starship)
