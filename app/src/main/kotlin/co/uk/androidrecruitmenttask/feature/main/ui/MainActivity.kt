@@ -42,13 +42,19 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
     }
 
     override var isAllPagesLoaded: Boolean = false
-
     override var nextPageIndex: Int = FIRST_PAGE_NUMBER
 
     override val layoutId: Int = R.layout.activity_main
 
-    override fun init() {
+    override fun init(savedInstanceState: Bundle?) {
         initRecycler()
+        savedInstanceState?.let { restoreState(it) }
+    }
+
+    private fun restoreState(savedInstanceState: Bundle) = with(savedInstanceState) {
+        nextPageIndex = getInt(MAIN_KEY_NEXT_PAGE_INDEX)
+        isAllPagesLoaded = getBoolean(MAIN_KEY_ALL_PAGES_LOADED)
+        peopleAdapter.updateList(getParcelableArrayList(MAIN_KEY_PEOPLE_LIST))
     }
 
     private fun initRecycler() = with(peopleRecyclerView) {
@@ -67,13 +73,6 @@ class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
         putBoolean(MAIN_KEY_ALL_PAGES_LOADED, isAllPagesLoaded)
         putParcelableArrayList(MAIN_KEY_PEOPLE_LIST, peopleAdapter.peopleList)
         super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) = with(savedInstanceState) {
-        nextPageIndex = getInt(MAIN_KEY_NEXT_PAGE_INDEX)
-        isAllPagesLoaded = getBoolean(MAIN_KEY_ALL_PAGES_LOADED)
-        peopleAdapter.updateList(getParcelableArrayList(MAIN_KEY_PEOPLE_LIST))
-        super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun addPeopleToList(peopleList: List<People>) {

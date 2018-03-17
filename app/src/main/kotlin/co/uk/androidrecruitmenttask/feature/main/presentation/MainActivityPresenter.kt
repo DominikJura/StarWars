@@ -13,16 +13,16 @@ import retrofit2.HttpException
 class MainActivityPresenter(
         private val view: View,
         private val service: StarWarsService,
-        private val onLoadSubject: Subject<Int>,
+        private val onLoadMoreSubject: Subject<Int>,
         private val httpErrorProvider: HttpErrorProvider,
         private val compositeDisposable: CompositeDisposable
 ) : Presenter {
 
     override fun initialize() {
-        compositeDisposable.add(onLoadSubject
+        compositeDisposable.add(onLoadMoreSubject
                 .distinct()
-                .doOnNext { view.isPageLoading = true }
                 .filter { !view.isAllPagesLoaded }
+                .doOnNext { view.isPageLoading = true }
                 .flatMapSingle {
                     service.getPeople(it)
                             .subscribeOn(Schedulers.io())
@@ -50,11 +50,11 @@ class MainActivityPresenter(
                     }
                 })
         )
-        onLoadSubject.onNext(view.nextPageIndex)
+        onLoadMoreSubject.onNext(view.nextPageIndex)
     }
 
     override fun onLoadMore() {
-        onLoadSubject.onNext(view.nextPageIndex)
+        onLoadMoreSubject.onNext(view.nextPageIndex)
     }
 
     override fun onItemClicked(position: Int) {

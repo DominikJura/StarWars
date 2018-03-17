@@ -23,11 +23,11 @@ abstract class BaseActivity<P : BaseContract.Presenter>
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
         ButterKnife.bind(this)
-        init()
+        init(savedInstanceState)
         presenter.initialize()
     }
 
-    protected open fun init() = Unit
+    protected open fun init(savedInstanceState: Bundle?) = Unit
 
     @CallSuper
     override fun onDestroy() {

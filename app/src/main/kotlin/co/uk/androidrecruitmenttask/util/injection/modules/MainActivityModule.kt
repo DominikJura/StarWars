@@ -15,6 +15,8 @@ import co.uk.androidrecruitmenttask.util.tools.HttpErrorProviderImpl
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
 
 @Module
 class MainActivityModule {
@@ -39,13 +41,18 @@ class MainActivityModule {
     fun httpErrorProvider(resourceProvider: ResourceProvider): HttpErrorProvider =
          HttpErrorProviderImpl(resourceProvider)
 
+    @Provides
+    fun onLoadMoreSubject(): Subject<Int> =
+            PublishSubject.create()
+
     @RuntimeScope
     @Provides
     fun presenter(
             view: MainActivityContract.View,
             service: StarWarsService,
+            onLoadMoreSubject: Subject<Int>,
             httpErrorProvider: HttpErrorProvider,
             compositeDisposable: CompositeDisposable
     ): MainActivityContract.Presenter =
-            MainActivityPresenter(view, service, httpErrorProvider, compositeDisposable)
+            MainActivityPresenter(view, service, onLoadMoreSubject, httpErrorProvider, compositeDisposable)
 }

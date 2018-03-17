@@ -19,7 +19,12 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
     }
 
     var onItemClickListener : OnItemClickListener? = null
-    var isLoading: Boolean = true
+
+    var isLoading: Boolean = false
+    set(loading) {
+        field = loading
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             when (PeopleAdapterType.values()[viewType]) {
