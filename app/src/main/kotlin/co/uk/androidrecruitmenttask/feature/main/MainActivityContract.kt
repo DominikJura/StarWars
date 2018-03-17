@@ -11,6 +11,7 @@ interface MainActivityContract {
         var nextPageIndex: Int
 
         fun addPeopleToList(peopleList: List<People>)
+        fun showSnackBar(errorMessage: String?)
     }
 
     interface Router

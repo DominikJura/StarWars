@@ -1,13 +1,15 @@
 package co.uk.androidrecruitmenttask.feature.main.ui
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.People
 import co.uk.androidrecruitmenttask.feature.common.ui.BaseActivity
+import co.uk.androidrecruitmenttask.feature.main.MainActivityContract
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
-import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.View
 import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleRecyclerAdapter
 import co.uk.androidrecruitmenttask.ui.util.StarWarsScrollListener
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_ALL_PAGES_LOADED
@@ -15,7 +17,7 @@ import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_
 import co.uk.androidrecruitmenttask.util.configuration.StringConstanst.MAIN_KEY_PEOPLE_LIST
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<Presenter>(), View {
+class MainActivity : BaseActivity<Presenter>(), MainActivityContract.View {
 
     companion object {
         const val FIRST_PAGE_NUMBER = 1
@@ -23,6 +25,9 @@ class MainActivity : BaseActivity<Presenter>(), View {
 
     @BindView(R.id.main_people_recycler)
     lateinit var peopleRecyclerView: RecyclerView
+
+    @BindView(android.R.id.content)
+    lateinit var rootView: View
 
     @Inject
     lateinit var peopleAdapter: PeopleRecyclerAdapter
@@ -73,5 +78,12 @@ class MainActivity : BaseActivity<Presenter>(), View {
 
     override fun addPeopleToList(peopleList: List<People>) {
         peopleAdapter.addPeople(peopleList)
+    }
+
+    override fun showSnackBar(errorMessage: String?) {
+        Snackbar.make(
+                rootView,
+                errorMessage ?: getString(R.string.default_error_message),
+                Snackbar.LENGTH_LONG)
     }
 }

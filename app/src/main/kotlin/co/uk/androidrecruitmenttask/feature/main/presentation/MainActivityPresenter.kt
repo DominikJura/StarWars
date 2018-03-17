@@ -7,7 +7,6 @@ import co.uk.androidrecruitmenttask.data.api.StarWarsService
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.Presenter
 import co.uk.androidrecruitmenttask.feature.main.MainActivityContract.View
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
@@ -29,7 +28,7 @@ class MainActivityPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ListResponse<People>>() {
-                    override fun onSuccess(@NonNull peopleListResponse: ListResponse<People>) {
+                    override fun onSuccess(peopleListResponse: ListResponse<People>) {
                         if(peopleListResponse.next == null) {
                             view.isAllPagesLoaded = true
                         }
@@ -39,9 +38,9 @@ class MainActivityPresenter(
                         view.isPageLoading = false
                     }
 
-                    override fun onError(@NonNull e: Throwable) {
+                    override fun onError(e: Throwable) {
                         view.isPageLoading = false
-                        //TODO show error
+                        view.showSnackBar(e.message)
                     }
                 }))
     }
