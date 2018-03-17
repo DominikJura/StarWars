@@ -87,13 +87,6 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         }
     }
 
-    // Call this method whenever performing new searches
-    public void resetState() {
-        this.previousTotalItemCount = 0;
-        this.loading = true;
-    }
-
     // Defines the process for actually loading more data based on page
     public abstract void onLoadMore(int page, int totalItemsCount, RecyclerView view);
-
 }

@@ -5,22 +5,57 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.People
+import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleAdapterType.LOADING
+import co.uk.androidrecruitmenttask.feature.main.ui.adapters.PeopleAdapterType.PEOPLE_ITEM
+import co.uk.androidrecruitmenttask.feature.main.ui.view.LoadingViewHolder
 import co.uk.androidrecruitmenttask.feature.main.ui.view.PeopleViewHolder
 
-class PeopleRecyclerAdapter(private val peopleList: MutableList<People>) : RecyclerView.Adapter<PeopleViewHolder>() {
+class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_people, parent, false)
-        return PeopleViewHolder(view)
-    }
+    var isLoading: Boolean = true
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+            when (PeopleAdapterType.values()[viewType]) {
+                PEOPLE_ITEM -> getPeopleViewHolder(parent)
+                LOADING -> getLoadingViewHolder(parent)
+            }
+
+    private fun getPeopleViewHolder(viewGroup: ViewGroup): PeopleViewHolder =
+            PeopleViewHolder(LayoutInflater
+                    .from(viewGroup.context)
+                    .inflate(R.layout.item_people, viewGroup, false)
+            )
+
+    private fun getLoadingViewHolder(viewGroup: ViewGroup): LoadingViewHolder =
+            LoadingViewHolder(LayoutInflater
+                    .from(viewGroup.context)
+                    .inflate(R.layout.item_loading, viewGroup, false))
 
     override fun getItemCount(): Int =
-            peopleList.size
+            when {
+                isLoading && !peopleList.isEmpty() -> peopleList.size + 1
+                else -> peopleList.size
+            }
 
+    override fun getItemViewType(position: Int): Int =
+            when {
+                isLoadingViewType(position) -> LOADING.ordinal
+                else -> PEOPLE_ITEM.ordinal
+            }
 
-    override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
-        holder.setItem(peopleList[position].name)
+    private fun isLoadingViewType(position: Int) =
+            isLoading && !peopleList.isEmpty() && peopleList.size == position
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is PeopleViewHolder -> holder.setItem(peopleList[position].name)
+        }
+    }
+
+    fun updateList(people: List<People>) = with(peopleList) {
+        clear()
+        addAll(people)
+        notifyDataSetChanged()
     }
 
     fun addPeople(people: List<People>) {
