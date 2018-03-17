@@ -48,7 +48,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
                     .inflate(R.layout.item_loading, viewGroup, false))
 
     override fun getItemCount(): Int = when {
-        isLoading && !peopleList.isEmpty() -> peopleList.size + NUMBER_OF_LOADINGS_VIEWS
+        isLoading -> peopleList.size + NUMBER_OF_LOADINGS_VIEWS
         else -> peopleList.size
     }
 
@@ -58,7 +58,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
     }
 
     private fun isLoadingViewType(position: Int) =
-            isLoading && !peopleList.isEmpty() && peopleList.size == position
+            isLoading && peopleList.size == position
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = with(holder) {
         when (this) {

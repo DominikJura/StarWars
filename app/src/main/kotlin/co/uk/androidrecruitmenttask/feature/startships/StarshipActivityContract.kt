@@ -6,8 +6,11 @@ import co.uk.androidrecruitmenttask.feature.common.BaseContract
 interface StarshipActivityContract {
 
     interface View {
-        fun addStarshipsToList(starshipsList: List<Starships>)
+        fun addStarshipToList(starship: Starships)
         fun showSnackBar(message: String)
+        fun showProgress()
+        fun hideProgress()
+        fun showNoStarshipsText()
     }
 
     interface Router

@@ -28,9 +28,8 @@ class StarshipsAdapter(
     override fun getItemCount(): Int =
             starshipsList.size
 
-    fun addStarships(starships: List<Starships>) = with(starshipsList) {
-        val currentSize = itemCount
-        addAll(starships)
-        notifyItemRangeInserted(currentSize, size - LAST_INDEX)
+    fun addStarship(starship: Starships) = with(starshipsList) {
+        add(starship)
+        notifyItemInserted(size - LAST_INDEX)
     }
 }

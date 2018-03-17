@@ -3,6 +3,10 @@ package co.uk.androidrecruitmenttask.feature.startships.ui
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import android.widget.ProgressBar
+import android.widget.TextView
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
 import co.uk.androidrecruitmenttask.data.api.Starships
@@ -20,6 +24,12 @@ class StarshipsActivity : BaseActivity<Presenter>(), View {
 
     @BindView(android.R.id.content)
     lateinit var rootView: android.view.View
+
+    @BindView(R.id.starship_progressBar)
+    lateinit var progressBar: ProgressBar
+
+    @BindView(R.id.starship_no_ship_text)
+    lateinit var noStarshipsTextView: TextView
 
     @Inject
     lateinit var recyclerLayoutManager: RecyclerView.LayoutManager
@@ -43,11 +53,23 @@ class StarshipsActivity : BaseActivity<Presenter>(), View {
         adapter = starshipsAdapter
     }
 
-    override fun addStarshipsToList(starshipsList: List<Starships>) {
-        starshipsAdapter.addStarships(starshipsList)
+    override fun addStarshipToList(starship: Starships) {
+        starshipsAdapter.addStarship(starship)
     }
 
     override fun showSnackBar(message: String) {
         Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showNoStarshipsText() {
+        noStarshipsTextView.visibility = VISIBLE
+    }
+
+    override fun showProgress() {
+        progressBar.visibility = VISIBLE
+    }
+
+    override fun hideProgress() {
+        progressBar.visibility = INVISIBLE
     }
 }
