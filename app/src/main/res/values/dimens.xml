@@ -1,4 +1,17 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <!--Margins-->
+    <dimen name="small_margin">8dp</dimen>
+
+    <!--Padding-->
+    <dimen name="small_padding">8dp</dimen>
+
+    <!--Custom-->
     <dimen name="match_constraint">0dp</dimen>
+
+    <!--Main-->
+    <dimen name="item_loading_marginVertical">@dimen/small_margin</dimen>
+    <dimen name="item_people_root_padding">@dimen/small_padding</dimen>
+
+    <!--Starships-->
+    <dimen name="item_starships_root_padding">@dimen/small_padding</dimen>
 </resources>

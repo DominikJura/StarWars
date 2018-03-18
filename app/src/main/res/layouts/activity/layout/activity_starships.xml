@@ -7,9 +7,9 @@
     tools:context="co.uk.androidrecruitmenttask.feature.main.ui.MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/starshipsList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/starships_recyclerView"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,17 +21,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_starships"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
+    <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/starship_progressBar"
+        style="?android:attr/progressBarStyleInverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

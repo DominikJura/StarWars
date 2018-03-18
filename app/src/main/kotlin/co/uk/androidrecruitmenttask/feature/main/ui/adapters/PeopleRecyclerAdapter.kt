@@ -66,6 +66,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
                 itemView.setOnClickListener { onItemClickListener?.invoke(peopleList[position]) }
                 setItem(peopleList[position].name)
             }
+            is LoadingViewHolder -> { showProgress() }
         }
     }
 

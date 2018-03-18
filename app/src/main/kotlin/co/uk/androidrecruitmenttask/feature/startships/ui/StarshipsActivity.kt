@@ -2,10 +2,9 @@ package co.uk.androidrecruitmenttask.feature.startships.ui
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v7.widget.RecyclerView
-import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import android.widget.ProgressBar
 import android.widget.TextView
 import butterknife.BindView
 import co.uk.androidrecruitmenttask.R
@@ -20,14 +19,14 @@ import javax.inject.Inject
 
 class StarshipsActivity : BaseActivity<Presenter>(), View {
 
-    @BindView(R.id.starshipsList)
+    @BindView(R.id.starships_recyclerView)
     lateinit var starshipsRecyclerView: RecyclerView
 
     @BindView(android.R.id.content)
     lateinit var rootView: android.view.View
 
     @BindView(R.id.starship_progressBar)
-    lateinit var progressBar: ProgressBar
+    lateinit var progressBar: ContentLoadingProgressBar
 
     @BindView(R.id.starship_no_ship_text)
     lateinit var noStarshipsTextView: TextView
@@ -77,9 +76,10 @@ class StarshipsActivity : BaseActivity<Presenter>(), View {
 
     override fun showProgress() {
         progressBar.visibility = VISIBLE
+        progressBar.show()
     }
 
     override fun hideProgress() {
-        progressBar.visibility = INVISIBLE
+        progressBar.hide()
     }
 }
