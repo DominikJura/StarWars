@@ -89,7 +89,7 @@ android {
 
 dependencies {
     final KOTLIN_VERSION = '1.2.21'
-    final SUPPORT_VERSION = '25.3.0'
+    final SUPPORT_VERSION = '25.4.0'
     final RETROFIT_VERSION = '2.2.0'
     final RXJAVA_VERSION = '2.0.8'
     final RXANDROID_VERSION = '2.0.1'
@@ -102,13 +102,16 @@ dependencies {
     final ESPRESSO_VERSION = "2.2.2"
     final KTLINT_VERSION = "0.15.0"
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"
     //Ktlint
     ktlint "com.github.shyiko:ktlint:$KTLINT_VERSION"
     //Espresso
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //Junit
