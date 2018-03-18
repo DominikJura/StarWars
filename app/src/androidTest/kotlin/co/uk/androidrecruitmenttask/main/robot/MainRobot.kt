@@ -42,7 +42,7 @@ class MainRobot : BaseRobot() {
         isTextDisplayed("$STAR_WARS_JEDI_TEXT $position")
     }
 
-    fun clickItem(position: Int,func: StarshipsRobot.() -> Unit): StarshipsRobot {
+    fun clickItem(position: Int, func: StarshipsRobot.() -> Unit): StarshipsRobot {
         checkElement(position)
         onView(withId(R.id.main_people_recycler)).perform(
                 scrollToHolder(CustomViewHolderMatcher()).atPosition(position), click())

@@ -9,7 +9,6 @@ abstract class StarWarsScrollListener() : RecyclerView.OnScrollListener() {
         private const val VISIBLE_THRESHOLD = 5
     }
 
-
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         if (!isLoading && isEndOfList(recyclerView.layoutManager as LinearLayoutManager)) {
             onLoadMore()

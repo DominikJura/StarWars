@@ -5,7 +5,6 @@ import co.uk.androidrecruitmenttask.feature.splash.ui.SplashActivity
 import co.uk.androidrecruitmenttask.feature.main.ui.MainActivity
 import co.uk.androidrecruitmenttask.feature.startships.ui.StarshipsActivity
 import co.uk.androidrecruitmenttask.util.injection.RuntimeScope
-import co.uk.androidrecruitmenttask.util.injection.modules.ApiModule
 import co.uk.androidrecruitmenttask.util.injection.modules.SplashActivityModule
 import co.uk.androidrecruitmenttask.util.injection.modules.MainActivityModule
 import co.uk.androidrecruitmenttask.util.injection.modules.RepositoryModule

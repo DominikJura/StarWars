@@ -11,13 +11,6 @@ import android.support.test.espresso.matcher.ViewMatchers.isRoot
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import org.hamcrest.Matchers.not
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import co.uk.androidrecruitmenttask.feature.main.ui.adapters.viewholder.PeopleViewHolder
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.Matchers.any
-import org.hamcrest.TypeSafeMatcher
 
 abstract class BaseRobot {
 

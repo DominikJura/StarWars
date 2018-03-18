@@ -24,7 +24,7 @@ class PeopleRecyclerAdapter(val peopleList: ArrayList<People>) : RecyclerView.Ad
     var isLoading: Boolean = false
         set(loading) {
             field = loading
-            when(loading) {
+            when (loading) {
                 true -> notifyItemInserted(peopleList.size)
                 false -> notifyItemRemoved(peopleList.size)
             }

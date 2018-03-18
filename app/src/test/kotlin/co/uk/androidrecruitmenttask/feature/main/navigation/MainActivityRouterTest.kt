@@ -18,7 +18,7 @@ class MainActivityRouterTest : BaseTest() {
     @Mock
     private lateinit var starshipsUrlList: ArrayList<String>
 
-    private lateinit var router:  MainActivityContract.Router
+    private lateinit var router: MainActivityContract.Router
 
     override fun setup() {
         super.setup()
