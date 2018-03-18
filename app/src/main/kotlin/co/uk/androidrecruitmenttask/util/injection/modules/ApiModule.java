@@ -1,11 +1,14 @@
 package co.uk.androidrecruitmenttask.util.injection.modules;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
 import co.uk.androidrecruitmenttask.BuildConfig;
+import co.uk.androidrecruitmenttask.util.api.ConnectivityInterceptor;
 import co.uk.androidrecruitmenttask.util.api.StarWarsService;
 import dagger.Module;
 import dagger.Provides;
@@ -42,10 +45,19 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    OkHttpClient providesOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
+    OkHttpClient providesOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
+                                      ConnectivityInterceptor connectivityInterceptor) {
+
         return new OkHttpClient.Builder()
+                .addInterceptor(connectivityInterceptor)
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    ConnectivityInterceptor providesConnectivityInterceptor(Context context) {
+        return new ConnectivityInterceptor(context);
     }
 
     @Provides
