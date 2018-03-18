@@ -11,8 +11,8 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 class RepositoryImpl(
-        private val starWarsService: StarWarsService,
-        private val starWarsParser: StarWarsParser
+    private val starWarsService: StarWarsService,
+    private val starWarsParser: StarWarsParser
 ) : Repository {
 
     companion object {

@@ -11,8 +11,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
 class RepositoryImpl(
-        private val starWarsService: StarWarsService,
-        private val starWarsParser: StarWarsParser
+    private val starWarsService: StarWarsService,
+    private val starWarsParser: StarWarsParser
 ) : Repository {
 
     override fun getPeople(page: Int): Single<ListResponse<People>> =

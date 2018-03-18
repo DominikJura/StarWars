@@ -11,12 +11,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
 
 class MainActivityPresenter(
-        private val view: View,
-        private val router: Router,
-        private val repository: Repository,
-        private val onLoadMoreSubject: Subject<Int>,
-        private val httpErrorProvider: HttpErrorProvider,
-        private val compositeDisposable: CompositeDisposable
+    private val view: View,
+    private val router: Router,
+    private val repository: Repository,
+    private val onLoadMoreSubject: Subject<Int>,
+    private val httpErrorProvider: HttpErrorProvider,
+    private val compositeDisposable: CompositeDisposable
 ) : Presenter {
 
     override fun initialize() = with(view) {

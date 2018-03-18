@@ -47,12 +47,12 @@ class MainActivityModule {
     @RuntimeScope
     @Provides
     fun presenter(
-            view: MainActivityContract.View,
-            router: MainActivityContract.Router,
-            repository: Repository,
-            onLoadMoreSubject: Subject<Int>,
-            httpErrorProvider: HttpErrorProvider,
-            compositeDisposable: CompositeDisposable
+        view: MainActivityContract.View,
+        router: MainActivityContract.Router,
+        repository: Repository,
+        onLoadMoreSubject: Subject<Int>,
+        httpErrorProvider: HttpErrorProvider,
+        compositeDisposable: CompositeDisposable
     ): MainActivityContract.Presenter =
             MainActivityPresenter(
                     view,

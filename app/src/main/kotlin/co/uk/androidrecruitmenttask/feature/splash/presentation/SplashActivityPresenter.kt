@@ -7,8 +7,8 @@ import io.reactivex.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
 
 class SplashActivityPresenter(
-        private val router: Router,
-        private val compositeDisposable: CompositeDisposable
+    private val router: Router,
+    private val compositeDisposable: CompositeDisposable
 ) : Presenter {
 
     companion object {

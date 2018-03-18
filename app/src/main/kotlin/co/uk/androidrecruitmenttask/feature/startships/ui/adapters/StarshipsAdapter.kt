@@ -9,7 +9,7 @@ import co.uk.androidrecruitmenttask.feature.startships.ui.adapters.viewholder.St
 import java.util.ArrayList
 
 class StarshipsAdapter(
-        val starshipsList: ArrayList<Starships>
+    val starshipsList: ArrayList<Starships>
 ) : RecyclerView.Adapter<StarshipViewHolder>() {
 
     companion object {

@@ -28,12 +28,12 @@ kapt {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "co.uk.androidrecruitmenttask"
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdkVersion 18
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -56,12 +56,12 @@ android {
             applicationIdSuffix ".develop"
             versionNameSuffix "-develop"
             buildConfigField 'String', 'BASE_URL', START_WARS_ENDPOINT
-            resValue 'string', 'app_name', 'Android Recruitment Task-develop'
+            resValue 'string', 'app_name', 'StarWars-develop'
         }
         production {
             dimension "mode"
             buildConfigField 'String', 'BASE_URL', START_WARS_ENDPOINT
-            resValue 'string', 'app_name', 'Android Recruitment Task'
+            resValue 'string', 'app_name', 'StarWars'
         }
     }
     sourceSets {
@@ -89,18 +89,18 @@ android {
 
 dependencies {
     final KOTLIN_VERSION = '1.2.21'
-    final SUPPORT_VERSION = '25.4.0'
-    final RETROFIT_VERSION = '2.2.0'
-    final RXJAVA_VERSION = '2.0.8'
-    final RXANDROID_VERSION = '2.0.1'
-    final OKHTTP_VERSION = '3.4.2'
+    final SUPPORT_VERSION = '27.1.0'
+    final RETROFIT_VERSION = '2.4.0'
+    final RXJAVA_VERSION = '2.1.10'
+    final RXANDROID_VERSION = '2.0.2'
+    final OKHTTP_VERSION = '3.10.0'
     final DAGGER2_VERSION = '2.15'
     final CONSTRAINT_VERSION = "1.0.2"
     final JUNIT_VERSION = "4.12"
     final BUTTERKNIFE_VERSION = "8.8.1"
-    final MOCKITO_VERSION = "2.13.0"
-    final ESPRESSO_VERSION = "2.2.2"
-    final KTLINT_VERSION = "0.15.0"
+    final MOCKITO_VERSION = "2.16.0"
+    final ESPRESSO_VERSION = "3.0.1"
+    final KTLINT_VERSION = "0.19.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //Kotlin

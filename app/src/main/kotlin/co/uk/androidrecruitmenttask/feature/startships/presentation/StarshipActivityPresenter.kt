@@ -9,10 +9,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class StarshipActivityPresenter(
-        private val view: View,
-        private val repository: Repository,
-        private val httpErrorProvider: HttpErrorProvider,
-        private val compositeDisposable: CompositeDisposable
+    private val view: View,
+    private val repository: Repository,
+    private val httpErrorProvider: HttpErrorProvider,
+    private val compositeDisposable: CompositeDisposable
 ) : Presenter {
 
     override fun initialize() = Unit

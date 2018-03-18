@@ -19,8 +19,8 @@ class SplashActivityModule {
     @RuntimeScope
     @Provides
     fun presenter(
-            router: SplashActivityContract.Router,
-            compositeDisposable: CompositeDisposable
+        router: SplashActivityContract.Router,
+        compositeDisposable: CompositeDisposable
     ): SplashActivityContract.Presenter =
             SplashActivityPresenter(router, compositeDisposable)
 }

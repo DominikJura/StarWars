@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class People(
-        val name: String,
-        val starships: ArrayList<String>
+    val name: String,
+    val starships: ArrayList<String>
 ) : Parcelable {
 
     /**

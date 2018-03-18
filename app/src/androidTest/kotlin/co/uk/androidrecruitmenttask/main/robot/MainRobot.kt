@@ -50,7 +50,7 @@ class MainRobot : BaseRobot() {
     }
 
     private class CustomViewHolderMatcher(
-            private val itemMatcher: Matcher<View> = Matchers.any(View::class.java)
+        private val itemMatcher: Matcher<View> = Matchers.any(View::class.java)
     ) : TypeSafeMatcher<RecyclerView.ViewHolder>() {
 
         override fun describeTo(description: Description) {

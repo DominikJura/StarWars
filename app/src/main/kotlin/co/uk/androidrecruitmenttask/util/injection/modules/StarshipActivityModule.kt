@@ -34,10 +34,10 @@ class StarshipActivityModule {
 
     @Provides
     fun presenter(
-            view: StarshipActivityContract.View,
-            repository: Repository,
-            httpErrorProvider: HttpErrorProvider,
-            compositeDisposable: CompositeDisposable
+        view: StarshipActivityContract.View,
+        repository: Repository,
+        httpErrorProvider: HttpErrorProvider,
+        compositeDisposable: CompositeDisposable
     ): StarshipActivityContract.Presenter =
             StarshipActivityPresenter(view, repository, httpErrorProvider, compositeDisposable)
 }
