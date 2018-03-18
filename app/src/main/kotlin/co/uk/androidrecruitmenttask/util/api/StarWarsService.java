@@ -16,9 +16,9 @@ import retrofit2.http.Query;
 public interface StarWarsService {
 
     @GET("people/")
-    public Single<ListResponse<People>> getPeople(@Query("page") int page);
+    Single<ListResponse<People>> getPeople(@Query("page") int page);
 
     @GET("starships/{id}/")
-    public Single<Starships> getStarshipById(@Path("id") int starshipId);
+    Single<Starships> getStarshipById(@Path("id") int starshipId);
 
 }

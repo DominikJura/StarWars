@@ -3,7 +3,7 @@ package co.uk.androidrecruitmenttask.feature.main.ui.util
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
-abstract class StarWarsScrollListener() : RecyclerView.OnScrollListener() {
+abstract class StarWarsScrollListener : RecyclerView.OnScrollListener() {
 
     companion object {
         private const val VISIBLE_THRESHOLD = 5

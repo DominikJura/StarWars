@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.jetbrains.kotlin.android.extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
     }
 }
 
@@ -88,20 +89,6 @@ android {
 }
 
 dependencies {
-    final KOTLIN_VERSION = '1.2.21'
-    final SUPPORT_VERSION = '27.1.0'
-    final RETROFIT_VERSION = '2.4.0'
-    final RXJAVA_VERSION = '2.1.10'
-    final RXANDROID_VERSION = '2.0.2'
-    final OKHTTP_VERSION = '3.10.0'
-    final DAGGER2_VERSION = '2.15'
-    final CONSTRAINT_VERSION = "1.0.2"
-    final JUNIT_VERSION = "4.12"
-    final BUTTERKNIFE_VERSION = "8.8.1"
-    final MOCKITO_VERSION = "2.16.0"
-    final ESPRESSO_VERSION = "3.0.1"
-    final KTLINT_VERSION = "0.19.0"
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION"

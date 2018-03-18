@@ -1,1 +1,2 @@
-include ':app'
+include ':StarWars'
+project(':StarWars').projectDir = new File('app')
