@@ -1,4 +1,4 @@
-To start project add to global gradle properties START_WARS_ENDPOINT = "http://swapi.co/api/"
+To start project add to global gradle properties START_WARS_ENDPOINT = "http://swapi.co/api/"KLK
 
 #Introduction:
 
