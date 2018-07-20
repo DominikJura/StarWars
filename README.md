@@ -1,4 +1,7 @@
+To start project add to global gradle properties START_WARS_ENDPOINT = "http://swapi.co/api/"
+
 #Introduction:
+
 
 Please imagine that a very significant client wants to become our partner.
 He is a huge fan of Star Wars, and he tests different companies with a simple PoC app that
