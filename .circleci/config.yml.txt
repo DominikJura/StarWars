@@ -1,14 +1,14 @@
 version: 2
 jobs:
+  dependencies:
+    pre:
+	  - source environmentSetup.sh && copyEnvVarsToGradleProperties
   build:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
-    dependencies:
-        pre:
-            - source environmentSetup.sh && copyEnvVarsToGradleProperties
     steps:
       - checkout
       - restore_cache:
